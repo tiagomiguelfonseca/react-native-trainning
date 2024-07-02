@@ -1,0 +1,21 @@
+diff --git a/node_modules/rn-async-storage-flipper/index.d.ts b/node_modules/rn-async-storage-flipper/index.d.ts
+index 704da6a..6625fbd 100644
+--- a/node_modules/rn-async-storage-flipper/index.d.ts
++++ b/node_modules/rn-async-storage-flipper/index.d.ts
+@@ -1,10 +1,11 @@
++export declare type CallbackWithResult<T> = (error?: Error | null, result?: T | null) => void;
++export declare type KeyValuePair = [string, string | null];
++export declare type MultiGetCallback = (errors?: readonly (Error | null)[] | null, result?: readonly KeyValuePair[]) => void;
++
+ interface Storage {
+-    getAllKeys(callback?: (error?: Error, keys?: string[]) => void): Promise<string[]>;
++    getAllKeys: (callback?: CallbackWithResult<readonly string[]>) => Promise<readonly string[]>;
+ 
+-    multiGet(
+-        keys: string[],
+-        callback?: (errors?: Error[], result?: [string, string | null][]) => void
+-    ): Promise<[string, string | null][]>;
++    multiGet: (keys: readonly string[], callback?: MultiGetCallback) => Promise<readonly KeyValuePair[]>;
+ }
+ 
+ export default function RNAsyncStorageFlipper(_storage: Storage): void;
