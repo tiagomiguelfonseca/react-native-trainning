@@ -1,5 +1,5 @@
 {
-  "name": "TestProject",
+  "name": "InstagramClone",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "androidQA": "react-native run-android --mode='qaDebug' && npm run checkFlipper",
     "androidUAT": "react-native run-android --mode='uatDebug' && npm run checkFlipper",
     "androidProd": "react-native run-android --mode='prodDebug' && npm run checkFlipper",
-    "ios": "react-native run-ios --scheme 'DEV' && npm run checkFlipper",
+    "ios": "react-native run-ios --scheme 'DEV' --udid 6D5C8268-4115-4B62-B21E-672D4F1043E5 && npm run checkFlipper",
     "iosQA": "react-native run-ios --scheme 'QA' && npm run checkFlipper",
     "iosUAT": "react-native run-ios --scheme 'UAT' && npm run checkFlipper",
     "iosProd": "react-native run-ios --scheme 'PROD' && npm run checkFlipper",
@@ -45,6 +45,7 @@
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "3.20.0",
     "react-native-svg": "13.8.0",
+    "react-native-vector-icons": "^10.1.0",
     "react-redux": "8.0.5",
     "redux": "4.2.1",
     "redux-flipper": "2.0.2",

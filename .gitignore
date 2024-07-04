@@ -43,6 +43,9 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 yarn.lock
+android/
+ios/
+path/
 
 
 get-pip.py

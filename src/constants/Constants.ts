@@ -22,6 +22,7 @@ export enum ScreenNames {
   SplashScreen = 'SplashScreen',
   MyTabs = 'MyTabs',
   MyStack = 'MyStack',
+  Homepage = 'Homepage',
 }
 
 export const Colors = {
