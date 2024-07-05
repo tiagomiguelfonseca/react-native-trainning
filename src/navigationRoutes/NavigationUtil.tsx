@@ -13,6 +13,7 @@ import {DrawerNavigationOptions} from '@react-navigation/drawer';
 import {Colors, ScreenNames} from '../constants/Constants';
 import ProfileIcon from '../assets/svgs/profile.svg';
 import DiscoveryIcon from '../assets/svgs/discovery.svg';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const stackScreenOptions: NativeStackNavigationOptions = {
   headerShown: false,
@@ -25,6 +26,7 @@ type TabScreenOptionsParam = {
 
 type TabBarIconParam = {
   color: string;
+  size: number;
 };
 
 export const tabScreenOptions = ({route}: TabScreenOptionsParam) => ({
@@ -38,6 +40,26 @@ export const tabScreenOptions = ({route}: TabScreenOptionsParam) => ({
   tabBarActiveTintColor: Colors.glOrange,
   tabBarInactiveTintColor: Colors.glGrey,
   headerShown: false,
+});
+
+export const tabScreenOptionsInsta = ({route}: TabScreenOptionsParam) => ({
+  tabBarIcon: ({color, size}: TabBarIconParam) => {
+    let iconName;
+    if (route.name === 'Home') {
+      iconName = 'home';
+    } else if (route.name === 'Search') {
+      iconName = 'search';
+    } else if (route.name === 'Plus') {
+      iconName = 'plus-square-o';
+    } else if (route.name === 'Likes') {
+      iconName = 'heart';
+    } else if (route.name === 'User') {
+      iconName = 'user';
+    }
+    return <Icon name={iconName as string} size={size} color={color} />;
+  },
+  tabBarActiveTintColor: 'tomato',
+  tabBarInactiveTintColor: 'gray',
 });
 
 export const drawerScreenOptions: DrawerNavigationOptions = {

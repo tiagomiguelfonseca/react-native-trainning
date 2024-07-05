@@ -10,61 +10,60 @@ import React, {useContext, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import {ScreenNames} from '../constants/Constants';
-import {
-  stackScreenOptions,
-  tabScreenOptions,
-  drawerScreenOptions,
-} from './NavigationUtil';
+import {stackScreenOptions, tabScreenOptionsInsta} from './NavigationUtil';
 
 //Screen Imports
 import Discovery from '../screenModules/discovery/Discovery';
-import Homepage from '../screenModules/homePage/Homepage';
 import Profile from '../screenModules/profile/Profile';
 import LoginScreen from '../screenModules/login/Login';
 import RegisterScreen from '../screenModules/login/Register';
 import {AuthContext} from '../screenModules/login/AuthContext';
 import SplashScreen from '../screenModules/splashScreen/Splash';
+import HomeScreen from '../screenModules/homePage/Homepage';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 
 const HomepageStack = () => {
   return (
-    <Stack.Navigator screenOptions={stackScreenOptions}>
-      <Stack.Screen name={ScreenNames.Homepage} component={Homepage} />
-    </Stack.Navigator>
-  );
-};
-
-const MainTab = () => {
-  return (
-    <Tab.Navigator screenOptions={tabScreenOptions}>
-      <Tab.Screen name={ScreenNames.Profile} component={Profile} />
-      <Tab.Screen name={ScreenNames.Discovery} component={Discovery} />
+    <Tab.Navigator screenOptions={tabScreenOptionsInsta}>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Search" component={Profile} />
+      <Tab.Screen name="Plus" component={Profile} />
+      <Tab.Screen name="Likes" component={Discovery} />
+      <Tab.Screen name="User" component={Discovery} />
     </Tab.Navigator>
   );
 };
 
-const MainStack = () => {
-  return (
-    <Stack.Navigator screenOptions={stackScreenOptions}>
-      <Stack.Screen name={ScreenNames.Profile} component={Profile} />
-      <Stack.Screen name={ScreenNames.Discovery} component={Discovery} />
-    </Stack.Navigator>
-  );
-};
+// const MainTab = () => {
+//   return (
+//     <Tab.Navigator screenOptions={tabScreenOptions}>
+//       <Tab.Screen name={ScreenNames.Profile} component={Profile} />
+//       <Tab.Screen name={ScreenNames.Discovery} component={Discovery} />
+//     </Tab.Navigator>
+//   );
+// };
 
-const MainDrawer = () => {
-  return (
-    <Drawer.Navigator screenOptions={drawerScreenOptions}>
-      <Drawer.Screen name={ScreenNames.MyTabs} component={MainTab} />
-      <Drawer.Screen name={ScreenNames.MyStack} component={MainStack} />
-    </Drawer.Navigator>
-  );
-};
+// const MainStack = () => {
+//   return (
+//     <Stack.Navigator screenOptions={stackScreenOptions}>
+//       <Stack.Screen name={ScreenNames.Profile} component={Profile} />
+//       <Stack.Screen name={ScreenNames.Discovery} component={Discovery} />
+//     </Stack.Navigator>
+//   );
+// };
+
+// const MainDrawer = () => {
+//   return (
+//     <Drawer.Navigator screenOptions={drawerScreenOptions}>
+//       <Drawer.Screen name={ScreenNames.MyTabs} component={MainTab} />
+//       <Drawer.Screen name={ScreenNames.MyStack} component={MainStack} />
+//     </Drawer.Navigator>
+//   );
+// };
 
 const AuthStack = () => {
   return (
@@ -98,8 +97,7 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer>
-      <HomepageStack />
-      {isLoading ? <Splash /> : token ? <MainDrawer /> : <AuthStack />}
+      {isLoading ? <Splash /> : token ? <HomepageStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

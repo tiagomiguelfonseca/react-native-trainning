@@ -1,22 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Image,
-  FlatList,
-} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {fetchData} from '../../api/api';
-const HomeScreen = () => {
+import SGTouchable from '../../components/SGTouchable';
+
+const HomeScreen = navigation => {
   const [stories, setStories] = useState([]);
   const [posts, setPosts] = useState([]);
-  console.log(posts, 'posts');
+
   useEffect(() => {
     fetchData()
       .then(data => {
-        console.log(data, 'data');
         setStories(data.stories);
         setPosts(data.posts);
       })
@@ -25,10 +19,14 @@ const HomeScreen = () => {
       });
   }, []);
 
+  console.log(stories, posts);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Icon name="camera" size={24} color="#000" />
+        <SGTouchable onPress={() => navigation.navigate('Camera')}>
+          <Icon name="camera" size={24} color="#000" />
+        </SGTouchable>
         <Image
           source={require('../../assets/images/inst.png')}
           style={styles.logo}
@@ -38,31 +36,13 @@ const HomeScreen = () => {
       <ScrollView style={styles.content}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Stories</Text>
-          {/* <View style={styles.placeholder} /> */}
-          <FlatList
-            horizontal
-            data={stories}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <View style={styles.story}>
-                <Image source={{uri: item.image}} style={styles.storyImage} />
-                <Text style={styles.storyUsername}>{item.username}</Text>
-              </View>
-            )}
-          />
+          <View style={styles.placeholder} />
         </View>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Posts</Text>
           <View style={styles.placeholder} />
         </View>
       </ScrollView>
-      <View style={styles.navBar}>
-        <Icon name="home" size={24} color="#000" />
-        <Icon name="search" size={24} color="#000" />
-        <Icon name="plus-square-o" size={24} color="#000" />
-        <Icon name="heart-o" size={24} color="#000" />
-        <Icon name="user-o" size={24} color="#000" />
-      </View>
     </View>
   );
 };
